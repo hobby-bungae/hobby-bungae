@@ -1,7 +1,7 @@
 package com.example.hobbybungae.entity;
 
-import com.example.hobbybungae.dto.PostAddRequestDto;
-import com.example.hobbybungae.dto.PostUpdateRequestDto;
+
+import com.example.hobbybungae.Dto.PostRequestDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -16,31 +16,26 @@ public class PostEntity extends TimeEntity {
     private Long id;
     @Column(nullable = false, length = 20)
     private String title;
-    @Column(nullable = false, length = 15)
-    private String author;
-    @Column(nullable = false)
-    private String password;
     @Column(nullable = false, length = 500)
     private String contents;
-    @Column(nullable = false, length = 30)
-    private String region;
+    @Column(nullable = false)
+    private String state;
+    @Column(nullable = false)
+    private String hobby;
 
-    public PostEntity(PostAddRequestDto requestDto) {
+    public PostEntity(PostRequestDto requestDto) {
         this.title = requestDto.getTitle();
-        this.author = requestDto.getAuthor();
-        this.password = requestDto.getPassword();
         this.contents = requestDto.getContent();
-        this.region = requestDto.getRegion();
+        this.state = requestDto.getState();
+        this.hobby = requestDto.getHobby();
     }
 
-    public void update(PostUpdateRequestDto requestDto) {
+    public void update(PostRequestDto requestDto) {
         this.title = requestDto.getTitle();
-        this.author = requestDto.getAuthor();
         this.contents = requestDto.getContent();
-        this.region = requestDto.getRegion();
-    }
+        this.state = requestDto.getState();
+        this.hobby = requestDto.getHobby();
 
-    public boolean passwordMatches(String inputPassword) {
-        return this.password.equals(inputPassword);
+
     }
 }

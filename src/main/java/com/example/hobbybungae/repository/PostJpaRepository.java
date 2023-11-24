@@ -1,5 +1,6 @@
 package com.example.hobbybungae.repository;
 
+
 import com.example.hobbybungae.entity.PostEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
