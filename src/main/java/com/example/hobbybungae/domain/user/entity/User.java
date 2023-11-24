@@ -1,14 +1,14 @@
 package com.example.hobbybungae.domain.user.entity;
 
+import com.example.hobbybungae.domain.userProfile.entity.UserHobby;
 import com.example.hobbybungae.domain.common.TimeStamp;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Builder;
+import com.example.hobbybungae.domain.userProfile.dto.UserProfileUpdateRequestDto;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -27,18 +27,22 @@ public class User extends TimeStamp {
     @Column(nullable = false)
     private String password;
 
-//    @OneToMany
-//    List<BungaePost> bungaePosts;
+    @Column
+    private String introduction;
 
-//    @OneToOne
-//    Profile profile;
+    @OneToMany(mappedBy = "user")
+    private List<UserHobby> userHobbyList = new ArrayList<>();
+
+        public void update(UserProfileUpdateRequestDto requestDto) {
+            this.idName = requestDto.getIdName();
+            this.name = requestDto.getName();
+            this.introduction = requestDto.getIntroduction();
+            this.userHobbyList = requestDto.getHobbyList();
+        }
 
 
-    @Builder
-    public User(Long id, String idName, String name, String password) {
-        this.id = id;
-        this.idName = idName;
-        this.name = name;
-        this.password = password;
-    }
+        public void updatePassword(UserProfileUpdateRequestDto requestDto) {
+            this.password = passwordEncoder.encode(requestDto.getPassword());
+        }
 }
+

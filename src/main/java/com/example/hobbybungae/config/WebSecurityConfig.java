@@ -2,8 +2,8 @@ package com.example.hobbybungae.config;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
-import com.example.hobbybungae.security.JwtAuthenticationFilter;
-import com.example.hobbybungae.security.JwtAuthorizationFilter;
+import com.example.hobbybungae.domain.user.dto.response.JwtAuthenticationFilter;
+import com.example.hobbybungae.domain.user.dto.response.JwtAuthorizationFilter;
 import com.example.hobbybungae.security.JwtUtil;
 import com.example.hobbybungae.security.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
